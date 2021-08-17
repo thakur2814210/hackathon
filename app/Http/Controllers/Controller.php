@@ -11,7 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function register(){
+    public function create(){
+
+        return view('create');
+      }
+      public function register(){
 
         return view('register');
       }

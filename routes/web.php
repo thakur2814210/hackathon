@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
+
 Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
