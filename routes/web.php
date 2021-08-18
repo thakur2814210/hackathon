@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HackathonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
+// Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
+
+Route::resources([
+	'hackathons' => HackathonController::class,
+]);

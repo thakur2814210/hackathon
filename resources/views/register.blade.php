@@ -25,25 +25,32 @@
     <!-- Main CSS-->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all">
 </head>
-
+<style>
+    button.add {
+        font-weight: bold;
+        border-radius:50px;
+        font: message-box;
+    }
+</style>
 <body>
     <div class="page-wrapper p-t-30 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
-                    <form method="POST">
+                    <form method="POST" action ="{{ route('hackathons.store') }}">
+                        @csrf
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Title</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" name="title">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Subtitle</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <input class="input--style-4" type="text" name="subtitle">
                                 </div>
                             </div>
                         </div>
@@ -51,17 +58,21 @@
                             <label class="label">Description</label>
                             <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="description"></textarea>
                         </div>
+                        <div class="input-group">
+                            <label class="label">Type</label>
+                            <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="type"></textarea>
+                        </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Min Participants</label>
-                                    <input class="input--style-4" type="number" name="min">
+                                    <input class="input--style-4" type="number" name="min_participants">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Max Participants</label>
-                                    <input class="input--style-4" type="number" name="max">
+                                    <input class="input--style-4" type="number" name="max_participants">
                                 </div>
                             </div>
                         </div>
@@ -74,8 +85,8 @@
                                 <div class="input-group">
                                     <label class="label">Event beginning</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input class="input--style-4" type="date" name="event_begin">
+                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                     </div>
                                 </div>
                             </div>
@@ -83,18 +94,29 @@
                                 <div class="input-group">
                                     <label class="label">Event Ending</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input class="input--style-4" type="date" name="event_end">
+                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                     </div>
                                 </div>
                             </div>
                             <div class="input-group">
-                                    <label class="label">End Subscription Date</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="Subscription">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                    </div>
+                                <label class="label">End Subscription Date</label>
+                                <div class="input-group-icon">
+                                    <input class="input--style-4" type="date" name="end_subscription">
+                                    {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                 </div>
+                            </div>
+                            <div class="input-group" id="variant-email">
+                                <label class="label">Email</label>
+                                <div class="input-group-icon">
+                                    <input class="input--style-4" type="text" name="email[]">
+                                    
+                                </div>
+                                <div>
+                                    <button id="bonus_but" class="btn btn--blue add" type="button" onClick="addEmailVariant()" >+</button>		
+                                </div>
+                                <div id="empty1" class="col-md-1"></div>
+                            </div>
                             
                         </div>
                         
@@ -107,6 +129,17 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        function addEmailVariant()
+        {
+            var parent = document.getElementById('variant-email');
+            var container= document.getElementById('empty1');
+            var div= document.createElement('div');
+            div.innerHTML +='<br><br><div class="input-group-icon"><input class="input--style-4" type="text" name="email[]"></div>';
+            parent.insertBefore(div,container);
+    
+        }
+    </script>
     <!-- Jquery JS-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <!-- Vendor JS-->
