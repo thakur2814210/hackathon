@@ -18,8 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
+// Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
 
-Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
+// Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
 
-Route::get('/hackathon-detail', 'App\Http\Controllers\Controller@hackathondetail');
+// Route::get('/hackathon-detail', 'App\Http\Controllers\Controller@hackathondetail');
+
+Route::resources([
+	'hackathons' => HackathonController::class,
+    'registrations' => RegistrationController::class,
+]);
