@@ -19,4 +19,8 @@ class Controller extends BaseController
 
         return view('register');
       }
+      public function hackathondetail()
+    {
+        return view('detail');
+    }
 }

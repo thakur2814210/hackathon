@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
 
 Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
+
+Route::get('/hackathon-detail', 'App\Http\Controllers\Controller@hackathondetail');

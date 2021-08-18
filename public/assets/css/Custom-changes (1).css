@@ -1,0 +1,19 @@
+.steps-wrapper .steps .step-item:before {
+    background: -webkit-gradient(linear, right top, left top, color-stop(50%, #dbdbdb), color-stop(50%, #7F00FF));
+    background: linear-gradient(to left, #dbdbdb 50%, #FF1919 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+}
+
+.steps-wrapper .steps .step-item.is-active .step-marker{border-color:#FF1919 !important;color:#FF1919}
+
+.steps-wrapper .steps .step-item.is-completed .step-marker{background:#FF1919}
+
+.button.secondary-btn {
+    outline: none;
+    border-color: #FF1919;
+    background-color: #FF1919;
+    color: #fff;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
