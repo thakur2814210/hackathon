@@ -289,6 +289,9 @@ h6 {
 .btn--blue {
   background: #4272d7;
 }
+.btn--red {
+  background: #d74242;
+}
 
 .btn--blue:hover {
   background: #3868cd;

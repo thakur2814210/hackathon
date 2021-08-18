@@ -11,4 +11,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function create(){
+
+        return view('create');
+      }
+      public function register(){
+
+        return view('register');
+      }
+      public function hackathondetail()
+    {
+        return view('detail');
+    }
 }
