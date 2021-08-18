@@ -11,6 +11,21 @@ use Illuminate\Http\Request;
 
 class HackathonController extends Controller
 {
+    public function hack_redirect($short_url){
+        $hackathon = Hackathon::where('short_url', $short_url)->first();
+        abort_unless($hackathon, 404, 'Project not found');
+        return redirect()->route('hackathon',$hackathon->slug);
+        // search in database
+        // if record not found then 404
+        // if record found then redirect to that route with the slug
+        // return redirect()->route('profile',$slug);
+    }
+
+    public function hackathon_detail($slug){
+        $hackathon = Hackathon::where('slug', $slug)->first();
+        abort_unless($hackathon, 404, 'Project not found');
+        return view('detail',compact('hackathon'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +43,7 @@ class HackathonController extends Controller
      */
     public function create()
     {
-        return view("register");
+        return view("create");
     }
     
 
@@ -74,14 +89,14 @@ class HackathonController extends Controller
         $hackathon->short_url= $url;
         $hackathon->save();
 
-        $email= $request->email;
+        // $email= $request->email;
 
-        for($i = 0; $i < count($email); $i++) {
-            $invite = new Invite();
-            $invite->email = $email[$i];
-            $invite->hackathons_id = $hackathon->id;
-            $invite->save();
-        }
+        // for($i = 0; $i < count($email); $i++) {
+        //     $invite = new Invite();
+        //     $invite->email = $email[$i];
+        //     $invite->hackathons_id = $hackathon->id;
+        //     $invite->save();
+        // }
         
     }
 

@@ -32,36 +32,41 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Create Hackathon</h2>
-                    <form method="POST">
+                    <form method="POST" action ="{{ route('hackathons.store') }}">
+                        @csrf
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Title</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" name="title">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Subtitle</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <input class="input--style-4" type="text" name="subtitle">
                                 </div>
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">Description</label>
-                            <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="description"></textarea>
+                            <textarea style="border:none" rows="2" cols="55" id="description" class="input--style-4" type="text" name="description"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Type</label>
+                            <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="type"></textarea>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Min Participants</label>
-                                    <input class="input--style-4" type="number" name="min">
+                                    <input class="input--style-4" type="number" name="min_participants">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Max Participants</label>
-                                    <input class="input--style-4" type="number" name="max">
+                                    <input class="input--style-4" type="number" name="max_participants">
                                 </div>
                             </div>
                         </div>
@@ -74,8 +79,8 @@
                                 <div class="input-group">
                                     <label class="label">Event beginning</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input class="input--style-4" type="date" name="event_begin">
+                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                     </div>
                                 </div>
                             </div>
@@ -83,16 +88,16 @@
                                 <div class="input-group">
                                     <label class="label">Event Ending</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input class="input--style-4" type="date" name="event_end">
+                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                     </div>
                                 </div>
                             </div>
                             <div class="input-group">
                                     <label class="label">End Subscription Date</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="Subscription">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input class="input--style-4" type="date" name="end_subscription">
+                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                     </div>
                             </div>
                             
@@ -122,6 +127,13 @@
     <!-- Main JS-->
     <script src="{{ asset('js/global.js') }}"></script>
 
+    {{-- TinyMCE --}}
+    <script src="https://cdn.tiny.cloud/1/p5obn81ihtjb2y8sc0groe11339vat5zklxwlf6z5sgwa6hl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#description'
+        });
+    </script>
 </body>
 
 </html>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HackathonController;
+use App\Http\Controllers\RegistrationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +24,11 @@ Route::get('/', function () {
 
 // Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
 
-// Route::get('/hackathon-detail', 'App\Http\Controllers\Controller@hackathondetail');
+Route::get('/hackathon-detail', 'App\Http\Controllers\Controller@hackathondetail');
+
+Route::get('/hackathon/{slug}', 'App\Http\Controllers\HackathonController@hackathon_detail')->name('hackathon');
+
+Route::get('/hack/{short_url}', 'App\Http\Controllers\HackathonController@hack_redirect');
 
 Route::resources([
 	'hackathons' => HackathonController::class,
