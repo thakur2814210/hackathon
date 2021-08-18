@@ -1130,7 +1130,7 @@
                 
                 <div class="header-info">
                     <div class="header-title">Allowed Team Size</div>
-                    <div class="header-subtitle">1-4</div>
+                    <div style="font-size:19px" class="header-subtitle">1-4</div>
                 </div>
                 <div class="header-control ml-auto">
                     <i class="sl sl-icon-arrow-down"></i>
@@ -1146,7 +1146,7 @@
                         <h2 class="subtitle">10 Aug 2021</h2>
                   </div>
                    <div class="column is-4">
-                   <a style="font-size:18px" class="button btn-align btn-outlined accent-btn rounded raised">Register Now</a>
+                   <a style="font-size:21px;width:250px;" class="button btn-align btn-outlined accent-btn rounded raised">Register Now</a>
                    </div>
                    <div class="column is-4">
                    <h1 class="title is-2">
