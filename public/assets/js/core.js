@@ -1535,21 +1535,7 @@ function initToasts() {
 			backgroundColor: "#8c8cf9"
 		})
 	}), $("#info-toast").on("click", function() {
-		iziToast.show({
-			class: "info-toast",
-			icon: "sl sl-icon-info",
-			title: "Hello,",
-			message: "This is an info notification !",
-			titleColor: "#fff",
-			messageColor: "#fff",
-			iconColor: "#fff",
-			backgroundColor: "#039BE5",
-			progressBarColor: "#444F60",
-			position: "topRight",
-			transitionIn: "fadeInDown",
-			close: !1,
-			zindex: 99999
-		})
+		
 	}), $("#success-toast").on("click", function() {
 		iziToast.show({
 			class: "success-toast",

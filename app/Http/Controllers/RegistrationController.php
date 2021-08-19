@@ -47,14 +47,14 @@ class RegistrationController extends Controller
             $check_hackathon_user_exist = HackathonUsers::where('hackathon_id', $hackathon->id)->where('registration_id', $email_exist->id)->first();
 
             if ($check_hackathon_user_exist) {
-                return 1;
+                return redirect("/hack" . "/" . $short_url. "#already");
             }
 
             $hackathonuser = new HackathonUsers();
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $email_exist->id;
             $hackathonuser->save();
-            return redirect("/hack" . "/" . $short_url);
+            return redirect("/hack" . "/" . $short_url. "#");
         } else {
             $registration = new Registration();
             $registration->name = $request->name;

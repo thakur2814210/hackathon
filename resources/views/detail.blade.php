@@ -20,6 +20,10 @@
         </div>
     </div>
 </div>
+
+<div class="column is-3">
+    <button id="info-toast" class="button btn-align info-btn raised rounded">Info toast</button>
+</div>
 <div class="flex-card light-bordered hover-inset mt-20">
         <div class="flex-card-header">
             
@@ -615,4 +619,26 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    {{-- <script>
+        $(document).ready(function(){
+            iziToast.show({
+			class: "info-toast",
+			icon: "sl sl-icon-info",
+			title: "Hello,",
+			message: "This is an info notification !",
+			titleColor: "#fff",
+			messageColor: "#fff",
+			iconColor: "#fff",
+			backgroundColor: "#039BE5",
+			progressBarColor: "#444F60",
+			position: "topRight",
+			transitionIn: "fadeInDown",
+			close: !1,
+			zindex: 99999
+		})
+        })
+    </script> --}}
 @endsection

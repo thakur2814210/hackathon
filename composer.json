@@ -10,6 +10,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
+        "mckenziearts/laravel-notify": "^2.2",
         "vinkla/hashids": "^9.1"
     },
     "require-dev": {
