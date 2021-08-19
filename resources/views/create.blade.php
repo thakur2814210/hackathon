@@ -32,41 +32,48 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Create Hackathon</h2>
-                    <form method="POST" action ="{{ route('hackathons.store') }}">
-                        @csrf
+                    <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Title</label>
-                                    <input class="input--style-4" type="text" name="title">
+                                    <input class="input--style-4" type="text" name="first_name">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Subtitle</label>
-                                    <input class="input--style-4" type="text" name="subtitle">
+                                    <input class="input--style-4" type="text" name="last_name">
                                 </div>
                             </div>
                         </div>
                         <div class="input-group">
-                            <label class="label">Description</label>
-                            <textarea style="border:none" rows="2" cols="55" id="description" class="input--style-4" type="text" name="description"></textarea>
+                            <label class="label">Subject</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="subject">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>option 1</option>
+                                    <option>option2 2</option>
+                                    <option>option 3</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
                         </div>
                         <div class="input-group">
-                            <label class="label">Type</label>
-                            <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="type"></textarea>
+                            <label class="label">Description</label>
+                            <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="description"></textarea>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Min Participants</label>
-                                    <input class="input--style-4" type="number" name="min_participants">
+                                    <input class="input--style-4" type="number" name="min">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Max Participants</label>
-                                    <input class="input--style-4" type="number" name="max_participants">
+                                    <input class="input--style-4" type="number" name="max">
                                 </div>
                             </div>
                         </div>
@@ -74,40 +81,46 @@
                             <label class="label">Awards</label>
                             <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="awards"></textarea>
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
+                        <div class="input-group">
                                     <label class="label">Event beginning</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="event_begin">
-                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
+                                        <input class="input--style-4 js-datepicker" type="text" name="eventbegin">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Event Ending</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="event_end">
-                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                    <label class="label">End Subscription Date</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="end_subscription">
-                                        {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
-                                    </div>
-                            </div>
-                            
                         </div>
                         <div class="input-group">
-                                    <label class="label">Invite Member</label>
+                                    <label class="label">Event Ending</label>
                                     <div class="input-group-icon">
-                                    <button class="btn btn--radius-2 btn--blue" type="submit">+</button>
+                                        <input class="input--style-4 js-datepicker" type="text" name="eventend">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
-                            </div>
+                        </div>
+                        <div class="input-group">
+                                    <label class="label">End Subscription Date</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="eventSubscription">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                        </div>
+                        <div class="row row-space">
+                                    <div class="col-2">
+                                      <div class="input-group">
+                                      <label class="label">Invite Member</label>
+                                      <div id="newRow"></div>
+                                      <button class="addbtn btn btn--radius-2 btn--blue" id = 'button-1' type="button" onclick="createNewElement();"><i class="fa fa-plus" style="font-size:20px"></i></button>
+                                      <!-- <input class="input--style-4" id = 'text-1'  type="text" name="email" placeholder="Please Enter Email"> -->
+                                      </div>
+                                    </div>
+                                    <div class="col-2">
+                                        
+                                        <div class="input-group p-t-30">
+                                        <div id="newRow2"></div>
+                                          <!-- <button class="addbtn btn btn--radius-2 btn--blue" id = 'button-1' type="button" onclick="createNewElement();"><i class="fa fa-plus" style="font-size:20px"></i></button> -->
+                                        </div>
+                                    </div>
+                        </div>
+                        
+                        
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                         </div>
@@ -118,6 +131,64 @@
     </div>
 
     <!-- Jquery JS-->
+    <script type="text/JavaScript">
+    let count = 2;
+    function createNewElement(){
+        
+        var html = '';
+            
+            html += '<input id = "text-'+count+'" style="margin-bottom:10px" type="text" name="email[]" class="input--style-4" placeholder="Please Enter Email">';
+          var html2='';  
+            html2 += '<button id= "button-'+count+'" style="margin-bottom:10px" onclick="remove1('+count+')" type="button" class="addbtn btn btn--radius-2 btn--red"><i class="fa fa-close" style="font-size:24px"></i></button><div></div>';
+            
+            $('#newRow').append(html);
+            $('#newRow2').append(html2);
+            count++;
+
+    }
+    function remove1(count){
+        
+        $('#text-'+count).remove();
+        $('#button-'+count).remove();
+    }
+
+    // $(document).on('click', '#removeRow', function () {
+    //         $(this).closest('#newRow').remove();
+    //     });
+    // function createNewElement() {
+    // document.getElementById("canclebtn").style.display = "block";
+    // document.getElementById("addbtn").style.display = "none";
+	
+    // var txtNewInputBox = document.createElement('div');
+
+	// txtNewInputBox.innerHTML = "<input class='input--style-4' type='text' placeholder='Please Enter Email' name='email'>";
+     
+	// document.getElementById("newElementId").appendChild(txtNewInputBox);
+
+
+    // canclebtn=document.createElement('button');
+    // canclebtn.className ="btn btn--radius-2 btn--red";
+    // canclebtn.setAttribute("type", "button");
+    // icanclebtn=document.createElement('i');
+    // icanclebtn.className ="fa fa-close";
+    // icanclebtn.setAttribute("style", "font-size:20px");
+    // canclebtn.appendChild(icanclebtn);
+    // document.getElementById("newElementId2").appendChild(canclebtn);
+
+    // addbtn=document.createElement('button');
+    // addbtn.className ="btn btn--radius-2 btn--blue";
+    // addbtn.setAttribute("type", "button");
+    
+    // iaddbtn=document.createElement('i');
+    // iaddbtn.className ="fa fa-plus";
+    // iaddbtn.setAttribute("style", "font-size:20px");
+    // addbtn.appendChild(iaddbtn);
+    // document.getElementById("newElementId2").appendChild(addbtn);
+
+
+
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
@@ -127,14 +198,6 @@
     <!-- Main JS-->
     <script src="{{ asset('js/global.js') }}"></script>
 
-    {{-- TinyMCE --}}
-    <script src="https://cdn.tiny.cloud/1/p5obn81ihtjb2y8sc0groe11339vat5zklxwlf6z5sgwa6hl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#description'
+ion'
         });
     </script>
-</body>
-
-</html>
-<!-- end document-->

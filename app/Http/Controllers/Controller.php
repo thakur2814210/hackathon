@@ -16,4 +16,12 @@ class Controller extends BaseController
     {
         return view('detail');
     }
+    public function challangecreate()
+    {
+        return view('createchallange');
+    }
+    public function challangedisplay()
+    {
+        return view('challanges');
+    }
 }
