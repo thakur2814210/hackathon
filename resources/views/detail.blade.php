@@ -41,7 +41,7 @@
                     <h2 class="subtitle">{{ \Carbon\Carbon::parse($hackathon->event_begin)->format('d-M-Y')}}</h2>
               </div>
                <div class="column is-4">
-               <a style="font-size:21px;width:250px;" href="/registrations/create" class="button btn-align btn-outlined accent-btn rounded raised">Register Now</a>
+               <a style="font-size:21px;width:250px;" href="/registrations/create/{{$hackathon->short_url}}" class="button btn-align btn-outlined accent-btn rounded raised">Register Now</a>
                </div>
                <div class="column is-4">
                <h1 class="title is-2">

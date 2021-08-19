@@ -33,6 +33,10 @@ Route::get('/hackathon/{slug}', 'App\Http\Controllers\HackathonController@hackat
 
 Route::get('/hack/{short_url}', 'App\Http\Controllers\HackathonController@hack_redirect');
 
+
+Route::get('/registrations/create/{short_url}', 'App\Http\Controllers\RegistrationController@create');
+Route::post('/registrations/{short_url}', 'App\Http\Controllers\RegistrationController@store');
+
 Route::resources([
 	'hackathons' => HackathonController::class,
     'registrations' => RegistrationController::class,

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hackathon;
+use App\Models\HackathonUsers;
 use App\Models\Profilelink;
 use App\Models\Registration;
 use Illuminate\Http\Request;
@@ -23,9 +25,9 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($short_url)
     {
-        return view("register");
+        return view("register", compact('short_url'));
     }
 
     /**
@@ -34,36 +36,63 @@ class RegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $short_url)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'nick_name' => 'required',
-            'email' => 'required|unique:registrations,email',
-            'password' => 'required',
-            'bio' => 'required',
-            'links' => 'required'
-        ]);
+        $hackathon = Hackathon::where('short_url', $short_url)->first();
+        if (!$hackathon) {
+            return redirect("/");
+        }
+        $email_exist = Registration::where("email", $request->email)->first();
+        if ($email_exist) {
+            $check_hackathon_user_exist = HackathonUsers::where('hackathon_id', $hackathon->id)->where('registration_id', $email_exist->id)->first();
 
-        $registration = new Registration();
-        $registration->name = $request->name;
-        $registration->nick_name = $request->nick_name;
-        $registration->email = $request->email;
-        $registration->password = $request->password;
-        $registration->bio = $request->bio;
-        $registration->save();
-
-        $links = json_decode($request->links);
-        if (count($links) != 0) {
-            for ($i = 0; $i < count($links); $i++) {
-                $profile_link = new Profilelink();
-                $profile_link->useful_links = $links[$i];
-                $profile_link->registrations_id = $registration->id;
-                $profile_link->save();
+            if ($check_hackathon_user_exist) {
+                return 1;
             }
+
+            $hackathonuser = new HackathonUsers();
+            $hackathonuser->hackathon_id = $hackathon->id;
+            $hackathonuser->registration_id = $email_exist->id;
+            $hackathonuser->save();
+            return redirect("/hack" . "/" . $short_url);
+        } else {
+            $registration = new Registration();
+            $registration->name = $request->name;
+            $registration->nick_name = $request->nick_name;
+            $registration->email = $request->email;
+            $registration->password = $request->password;
+            $registration->bio = $request->bio;
+            $registration->save();
+
+            $links = json_decode($request->links);
+            if (count($links) != 0) {
+                for ($i = 0; $i < count($links); $i++) {
+                    $profile_link = new Profilelink();
+                    $profile_link->useful_links = $links[$i];
+                    $profile_link->registrations_id = $registration->id;
+                    $profile_link->save();
+                }
+            }
+            $hackathonuser = new HackathonUsers();
+            $hackathonuser->hackathon_id = $hackathon->id;
+            $hackathonuser->registration_id = $registration->id;
+            $hackathonuser->save();
+
+            return redirect("/hack" . "/" . $short_url);
+            // return "Created New record";
         }
 
-        return redirect("/registrations");
+
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'nick_name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'bio' => 'required',
+        //     'links' => 'required'
+        // ]);
+
+
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('main')
 <style>
     button.add {
@@ -15,7 +15,7 @@
         <div class="card card-4">
             <div class="card-body">
                 <h2 class="title">Register For Hackathon</h2>
-                <form method="POST" action="/registrations" id="reg_frm">
+                <form method="POST" action="/registrations/{{$short_url}}" id="reg_frm">
                         @csrf
                            <div class="input-group">
                                 <label class="label">Name</label>
