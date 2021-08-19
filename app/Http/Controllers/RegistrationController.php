@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profilelink;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -34,15 +36,16 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-			'name'=> 'required',
-			'nick_name'=>'required',
-			'email' => 'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'nick_name' => 'required',
+            'email' => 'required|unique:registrations,email',
             'password' => 'required',
-            'bio'=> 'required',
-		]);
+            'bio' => 'required',
+            'links' => 'required'
+        ]);
 
-		$registration = new Registration();
+        $registration = new Registration();
         $registration->name = $request->name;
         $registration->nick_name = $request->nick_name;
         $registration->email = $request->email;
@@ -50,14 +53,17 @@ class RegistrationController extends Controller
         $registration->bio = $request->bio;
         $registration->save();
 
-        $links= $request->useful_links;
-
-        for($i = 0; $i < count($links); $i++) {
-            $profile_link = new Profilelink();
-            $profile_link->useful_links = $links[$i];
-            $profile_link->registrations_id = $registration->id;
-            $profile_link->save();
+        $links = json_decode($request->links);
+        if (count($links) != 0) {
+            for ($i = 0; $i < count($links); $i++) {
+                $profile_link = new Profilelink();
+                $profile_link->useful_links = $links[$i];
+                $profile_link->registrations_id = $registration->id;
+                $profile_link->save();
+            }
         }
+
+        return redirect("/registrations");
     }
 
     /**
