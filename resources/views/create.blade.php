@@ -4,49 +4,59 @@
     <div class="wrapper wrapper--w680">
         <div class="card card-4">
             <div class="card-body">
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                 <h2 class="title">Create Hackathon</h2>
-                <form method="POST">
+                <form method="POST" action="/hackathons">
+                    @csrf
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Title</label>
-                                <input class="input--style-4" type="text" name="first_name">
+                                <input class="input--style-4" type="text" name="title">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Subtitle</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                                <input class="input--style-4" type="text" name="subtitle">
                             </div>
                         </div>
                     </div>
                     <div class="input-group">
                         <label class="label">Subject</label>
                         <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="subject">
+                            <select name="type" >
                                 <option disabled="disabled" selected="selected">Choose option</option>
                                 <option>option 1</option>
                                 <option>option2 2</option>
                                 <option>option 3</option>
                             </select>
-                            <div class="select-dropdown"></div>
+                            <div class="select-dropdown" name="type"></div>
                         </div>
                     </div>
                     <div class="input-group">
                         <label class="label">Description</label>
-                        <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="description"></textarea>
+                        <textarea style="border:none" rows="2" cols="55" class="input--style-4" type="text" id="description" name="description"></textarea>
                     </div>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Min Participants</label>
-                                <input class="input--style-4" type="number" name="min">
+                                <input class="input--style-4" type="number" name="min_participants">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Max Participants</label>
-                                <input class="input--style-4" type="number" name="max">
+                                <input class="input--style-4" type="number" name="max_participants">
                             </div>
                         </div>
                     </div>
@@ -57,22 +67,22 @@
                     <div class="input-group">
                                 <label class="label">Event beginning</label>
                                 <div class="input-group-icon">
-                                    <input class="input--style-4 js-datepicker" type="text" name="eventbegin">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    <input class="input--style-4 js-datepicker" type="text" name="event_begin">
+                                    {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar1" ></i> --}}
                                 </div>
                     </div>
                     <div class="input-group">
                                 <label class="label">Event Ending</label>
                                 <div class="input-group-icon">
-                                    <input class="input--style-4 js-datepicker" type="text" name="eventend">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    <input class="input--style-4 js-datepicker" type="text" name="event_end">
+                                    {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                 </div>
                     </div>
                     <div class="input-group">
                                 <label class="label">End Subscription Date</label>
                                 <div class="input-group-icon">
-                                    <input class="input--style-4 js-datepicker" type="text" name="eventSubscription">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    <input class="input--style-4 js-datepicker" type="text" name="end_subscription">
+                                    {{-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> --}}
                                 </div>
                     </div>
                     <div class="row row-space">
@@ -163,9 +173,13 @@
     
     
     </script>
-    <script>
-    
-    </script>
+   <script src="https://cdn.tiny.cloud/1/p5obn81ihtjb2y8sc0groe11339vat5zklxwlf6z5sgwa6hl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>    
+        <script>tinymce.init({
+    selector: '#description',
+    plugins: 'code',
+});
+</script>
+   
     
 @endsection
    

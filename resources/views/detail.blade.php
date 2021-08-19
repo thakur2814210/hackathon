@@ -38,7 +38,7 @@
                <h1 class="title is-2">
                         Starts On :
                     </h1>
-                    <h2 class="subtitle">10 Aug 2021</h2>
+                    <h2 class="subtitle">{{ \Carbon\Carbon::parse($hackathon->event_begin)->format('d-M-Y')}}</h2>
               </div>
                <div class="column is-4">
                <a style="font-size:21px;width:250px;" href="/registrations/create" class="button btn-align btn-outlined accent-btn rounded raised">Register Now</a>
@@ -47,7 +47,8 @@
                <h1 class="title is-2">
                         Ends On :
                     </h1>
-                    <h2 class="subtitle">15 Aug 2021</h2>
+                    <h2 class="subtitle">{{ \Carbon\Carbon::parse($hackathon->event_end)->format('d-M-Y')}}
+                    </h2>
                </div>
                 <!-- <p class="pb-10">Lorem ipsum dolor sit amet, has vero libris melius ea, omnis velit comprehensam duo an, meis ornatus eam ad. Ius ut labores scaevola.</p> -->
             </div>

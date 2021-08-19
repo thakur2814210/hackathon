@@ -55,8 +55,7 @@ class HackathonController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request,[
+        $request->validate([
 			'title'=> 'required',
 			'subtitle'=>'required',
 			'description' => 'required',
@@ -88,7 +87,6 @@ class HackathonController extends Controller
         $url= Hashids::encode($temp);
         $hackathon->short_url= $url;
         $hackathon->save();
-
         // $email= $request->email;
 
         // for($i = 0; $i < count($email); $i++) {
