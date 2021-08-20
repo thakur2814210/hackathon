@@ -22,6 +22,11 @@ class Controller extends BaseController
     }
     public function challangedisplay()
     {
-        return view('challanges');
+        $page_title = 'deno';
+        return view('challanges', compact('page_title'));
+    }
+
+    public function test(){
+        return view('test');
     }
 }

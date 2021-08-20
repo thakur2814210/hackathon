@@ -18,7 +18,8 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        //
+        $reg = Registration::all()->first();
+        return $reg;
     }
 
     /**

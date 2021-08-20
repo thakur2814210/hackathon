@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title> Bulkit :: Blog Single</title>
+    <title>{{$page_title}}</title>
     <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}" />
 
     <!--Core CSS -->
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
     <link id="theme-sheet" rel="stylesheet" href="{{asset('assets/css/core.css')}}">
 </head>
+
 
 <body class="is-theme-core">
    

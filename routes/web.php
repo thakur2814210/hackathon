@@ -23,6 +23,7 @@ Route::get('/', function () {
  Route::get('/challange-create', 'App\Http\Controllers\Controller@challangecreate');
 
  Route::get('/challanges', 'App\Http\Controllers\Controller@challangedisplay');
+ Route::get('/test', 'App\Http\Controllers\Controller@test');
 // Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
 
 // Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');

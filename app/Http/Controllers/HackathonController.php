@@ -30,7 +30,8 @@ class HackathonController extends Controller
     public function hackathon_detail($slug){
         $hackathon = Hackathon::where('slug', $slug)->first();
         abort_unless($hackathon, 404, 'Project not found');
-        return view('detail',compact('hackathon'));
+        $page_title = $hackathon->subtitle;
+        return view('detail',compact('hackathon', 'page_title'));
     }
     /**
      * Display a listing of the resource.
