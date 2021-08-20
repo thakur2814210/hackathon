@@ -17,6 +17,8 @@ class AddChallengesTable extends Migration
             $table->id();
             $table->string('challenge_name')->nullable();
             $table->longText('challenge_body')->nullable();
+            $table->text('slug')->nullable();
+            $table->string('short_url')->nullable();
             $table->timestamps();
         });
     }

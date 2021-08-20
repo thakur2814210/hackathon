@@ -737,49 +737,8 @@
 @endsection
 
 @section('scripts')
-    <script src="monaco-editor/min/vs/loader.js"></script>
-    <script>
-        let editor;
-        require.config({ paths: { 'vs': 'monaco-editor/min/vs' }});
-        require(['vs/editor/editor.main'], function() {
-            editor = monaco.editor.create(document.getElementById('container'),                 {
-                value: [
-                    '// Write Your Code Here.'
-                ].join('\n'),
-                language: 'php',
-                theme: "vs-dark"
-            });
-        });
-    
-        function save() {
-           // how do I get the value/code inside the editor?
-           var value = editor.getValue()
-            // console.log(value);
-        }
-    </script>
-    <script>
-        $("#submit_code").click(function(e){
-            e.preventDefault();
-            $("#email_f").val("");
-            // save();
-
-        })
-
-        $("#save").click(function(e){
-            e.preventDefault();
-            hideModal();
-        })
-
-        function hideModal() {
-    $("#email-modal-background").removeClass('scaleInCircle');
-    $("#email-modal-content").removeClass('scaleIn');
-    $(".modal-close").addClass('is-hidden');
-    setTimeout(() => {
-        $("#vertical-form-modal").removeClass('is-active');
-    }, 500)
-}
-
-    </script>
+<script src="monaco-editor/min/vs/loader.js"></script>
+<script src="{{asset('js/challenges.js')}}"></script>
 @endsection
 
 

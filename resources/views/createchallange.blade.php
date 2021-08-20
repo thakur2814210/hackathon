@@ -4,6 +4,11 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                       <strong>Please Fill all Fields.</strong>
+               </div>
+              @endif
                     <h2 class="title">Create Challange</h2>
                     <form method="POST">
                        @csrf
