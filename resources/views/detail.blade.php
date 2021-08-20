@@ -12,9 +12,9 @@
             <div class="columns is-vcentered">
                 <div class="column is-6 is-offset-3 has-text-centered is-subheader-caption">
                     <h1 class="title is-2">
-                        Title
+                        {{$hackathon->title}}
                     </h1>
-                    <h2 class="subtitle">Subtitle</h2>
+                    <h2 class="subtitle">{{$hackathon->subtitle}}</h2>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <div class="column is-8 is-offset-2">
             {!! $hackathon->description !!}
                 <!-- Single Post -->
-                <div class="is-single-post">
+                {{-- <div class="is-single-post">
                     <div class="featured-post-image">
                         <img src="https://via.placeholder.com/1200x300" data-demo-src="assets/img/demo/posts/post-1.jpg" alt="">
                         <div class="post-date">
@@ -134,7 +134,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
