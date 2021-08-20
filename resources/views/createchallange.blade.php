@@ -6,16 +6,16 @@
                 <div class="card-body">
                     <h2 class="title">Create Challange</h2>
                     <form method="POST">
-                       
+                       @csrf
                                 <div class="input-group">
                                     <label class="label">Title</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" name="challenge_name">
                                 </div>
                             
                         
                         <div class="input-group">
                             <label class="label">Description</label>
-                            <textarea id="myEditor" style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="description"></textarea>
+                            <textarea id="myEditor" style="border:none" rows="2" cols="55" class="input--style-4" type="text" name="challenge_body"></textarea>
                         </div>
                         
                         

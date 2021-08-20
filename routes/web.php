@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
  Route::get('/challange-create', 'App\Http\Controllers\Controller@challangecreate');
+ Route::post('/challange-create', 'App\Http\Controllers\Controller@store');
 
  Route::get('/challanges', 'App\Http\Controllers\Controller@challangedisplay');
  Route::get('/test', 'App\Http\Controllers\Controller@test');

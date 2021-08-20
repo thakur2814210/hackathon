@@ -5,75 +5,7 @@
 <div class="infraloader is-active"></div>
 <div class="hero product-hero is-fullheight is-relative">
 
-    <nav class="navbar navbar-wrapper navbar-default navbar-fade is-transparent">
-        <div class="container">
-            <!-- Brand -->
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <img class="switcher-logo" src="assets/img/logos/logo/bulkit-core.svg" alt="">
-                </a>
-
-                <!-- Sidebar Trigger -->
-                <a id="navigation-trigger" class="navbar-item hamburger-btn" href="javascript:void(0);">
-                    <span class="menu-toggle">
-                        <span class="icon-box-toggle">
-                            <span class="rotate">
-                                <i class="icon-line-top"></i>
-                                <i class="icon-line-center"></i>
-                                <i class="icon-line-bottom"></i>
-                            </span>
-                    </span>
-                    </span>
-                </a>
-
-                <!-- Responsive toggle -->
-                <div class="custom-burger" data-target="">
-                    <a id="" class="responsive-btn" href="javascript:void(0);">
-                        <span class="menu-toggle">
-                            <span class="icon-box-toggle">
-                                <span class="rotate">
-                                    <i class="icon-line-top"></i>
-                                    <i class="icon-line-center"></i>
-                                    <i class="icon-line-bottom"></i>
-                                </span>
-                        </span>
-                        </span>
-                    </a>
-                </div>
-                <!-- /Responsive toggle -->
-            </div>
-
-            <!-- Navbar menu -->
-            <div class="navbar-menu">
-                <!-- Navbar Start -->
-                <div class="navbar-start">
-                    <!-- Navbar item -->
-                    <a class="navbar-item is-slide" href="kit1-features.html">
-                        Features
-                    </a>
-                    <!-- Navbar item -->
-                    <a class="navbar-item is-slide" href="kit1-pricing.html">
-                        Pricing
-                    </a>
-                    <!-- Navbar item -->
-                    <a class="navbar-item is-slide" href="kit1-login.html">
-                        Login
-                    </a>
-                </div>
-
-                <!-- Navbar end -->
-                <div class="navbar-end">
-                    <!-- Signup button -->
-                    <div class="navbar-item">
-                        <a id="#signup-btn" href="kit1-signup.html" class="button button-cta btn-outlined is-bold btn-align primary-btn rounded raised">
-                            Sign Up
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Hero image -->
+   @include('layouts.navbar')
     
 
 <div id="services" class="section">
@@ -769,8 +701,36 @@
     </div>
     <div class="title-divider is-small"></div>
         <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
-        <a class="button button-cta primary-btn mt-3">Submit</a>
+        <a class="button button-cta primary-btn mt-3 modal-trigger" id="submit_code" data-modal="vertical-form-modal">Submit</a>
 </div>
+
+ {{-- <!-- Modal trigger -->
+ <a class="button button-cta btn-align primary-btn raised modal-trigger" data-modal="vertical-form-modal">Open modal</a>
+ <!-- /Modal trigger -->
+  --}}
+ <!-- Modal Markup -->
+ <div id="vertical-form-modal" class="modal modal-sm">
+     <div class="modal-background" id="email-modal-background"></div>
+     <div class="modal-content" id="email-modal-content">
+         <div class="flex-card simple-shadow">
+             <div class="card-body">
+                 <h2 class="title has-text-centered is-3 mb-40">Enter Email To Submit</h2>
+                 <div class="control-material is-accent">
+                     <input class="material-input" type="email" id="email_f" required name="email">
+                     <span class="material-highlight"></span>
+                     <span class="bar"></span>
+                     <label>Email *</label>
+                 </div>
+                 <div class="mt-20">
+                     <button class="button button-cta btn-align accent-btn raised is-fullwidth no-lh" id="save">Submit</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <button class="modal-close is-large is-hidden" aria-label="close"></button>
+ </div>
+ <!-- /Modal Markup -->
+            
 
 @include('layouts.footer');
 
@@ -779,9 +739,10 @@
 @section('scripts')
     <script src="monaco-editor/min/vs/loader.js"></script>
     <script>
+        let editor;
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' }});
         require(['vs/editor/editor.main'], function() {
-            var editor = monaco.editor.create(document.getElementById('container'),                 {
+            editor = monaco.editor.create(document.getElementById('container'),                 {
                 value: [
                     '// Write Your Code Here.'
                 ].join('\n'),
@@ -792,9 +753,32 @@
     
         function save() {
            // how do I get the value/code inside the editor?
-           var value = "";
-           saveValueSomewhere(value);     
+           var value = editor.getValue()
+            // console.log(value);
         }
+    </script>
+    <script>
+        $("#submit_code").click(function(e){
+            e.preventDefault();
+            $("#email_f").val("");
+            // save();
+
+        })
+
+        $("#save").click(function(e){
+            e.preventDefault();
+            hideModal();
+        })
+
+        function hideModal() {
+    $("#email-modal-background").removeClass('scaleInCircle');
+    $("#email-modal-content").removeClass('scaleIn');
+    $(".modal-close").addClass('is-hidden');
+    setTimeout(() => {
+        $("#vertical-form-modal").removeClass('is-active');
+    }, 500)
+}
+
     </script>
 @endsection
 
