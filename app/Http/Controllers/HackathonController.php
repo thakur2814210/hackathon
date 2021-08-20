@@ -14,7 +14,13 @@ class HackathonController extends Controller
     public function hack_redirect($short_url){
         $hackathon = Hackathon::where('short_url', $short_url)->first();
         abort_unless($hackathon, 404, 'Project not found');
-        return redirect()->route('hackathon',$hackathon->slug);
+        $message = "";
+        if(session()->get('message') == 'failed'){
+            $message = 'failed';
+        }else if(session()->get('message') == 'success'){
+            $message = 'success';  
+        }
+        return redirect()->route('hackathon',$hackathon->slug)->with('message', $message);
         // search in database
         // if record not found then 404
         // if record found then redirect to that route with the slug

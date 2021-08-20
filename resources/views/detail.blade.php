@@ -22,7 +22,8 @@
 </div>
 
 <div class="column is-3">
-    <button id="info-toast" class="button btn-align info-btn raised rounded">Info toast</button>
+    {{-- <button id="info-toast" class="button btn-align info-btn raised rounded">Info toast</button> --}}
+    {{-- {{session()->get('message')}}     --}}
 </div>
 <div class="flex-card light-bordered hover-inset mt-20">
         <div class="flex-card-header">
@@ -622,23 +623,44 @@
 @endsection
 
 @section('scripts')
-    {{-- <script>
+    <script>
         $(document).ready(function(){
-            iziToast.show({
-			class: "info-toast",
-			icon: "sl sl-icon-info",
-			title: "Hello,",
-			message: "This is an info notification !",
+
+            let message = '{{session()->get('message')}}';
+            if(message == 'failed'){
+                iziToast.show({
+			class: "danger-toast",
+			icon: "sl sl-icon-close",
+			title: "Error,",
+			message: "You are already registered for this event.",
 			titleColor: "#fff",
 			messageColor: "#fff",
 			iconColor: "#fff",
-			backgroundColor: "#039BE5",
+			backgroundColor: "#FF7273",
 			progressBarColor: "#444F60",
 			position: "topRight",
 			transitionIn: "fadeInDown",
 			close: !1,
 			zindex: 99999
 		})
+        }else if(message == 'success'){
+            iziToast.show({
+			class: "success-toast",
+			icon: "sl sl-icon-check",
+			title: "Done,",
+			message: "You have successfully registered.",
+			titleColor: "#fff",
+			messageColor: "#fff",
+			iconColor: "#fff",
+			backgroundColor: "#00b289",
+			progressBarColor: "#444F60",
+			position: "topRight",
+			transitionIn: "fadeInDown",
+			close: !1,
+			zindex: 99999
+		})
+        }
+           
         })
-    </script> --}}
+    </script>
 @endsection

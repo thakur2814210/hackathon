@@ -14,7 +14,17 @@
     <div class="wrapper wrapper--w680">
         <div class="card card-4">
             <div class="card-body">
-                <h2 class="title">Register For Hackathon</h2>
+                @if ($errors->any())
+         <div class="alert alert-danger">
+            <strong>Please Fill all Fields.</strong>
+    </div>
+   @endif
+                <h2 class="title">Register For Hackathon
+                  
+                    {{-- <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div> --}}
+                </h2>
                 <form method="POST" action="/registrations/{{$short_url}}" id="reg_frm">
                         @csrf
                            <div class="input-group">
@@ -126,6 +136,25 @@
 
 
 </script>
+
+{{-- <script>
+    
+    iziToast.show({
+			class: "danger-toast",
+			icon: "sl sl-icon-close",
+			title: "Hello,",
+			message: "This is a danger notification !",
+			titleColor: "#fff",
+			messageColor: "#fff",
+			iconColor: "#fff",
+			backgroundColor: "#FF7273",
+			progressBarColor: "#444F60",
+			position: "topRight",
+			transitionIn: "fadeInDown",
+			close: !1,
+			zindex: 99999
+		})
+</script> --}}
 @endsection
    
   

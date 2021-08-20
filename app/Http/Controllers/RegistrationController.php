@@ -7,6 +7,7 @@ use App\Models\HackathonUsers;
 use App\Models\Profilelink;
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RegistrationController extends Controller
 {
@@ -38,6 +39,17 @@ class RegistrationController extends Controller
      */
     public function store(Request $request, $short_url)
     {
+        
+        $this->validate($request, [
+            'name' => 'required',
+            'nick_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'bio' => 'required',
+            'links' => 'required'
+        ]);
+
+       
         $hackathon = Hackathon::where('short_url', $short_url)->first();
         if (!$hackathon) {
             return redirect("/");
@@ -47,14 +59,15 @@ class RegistrationController extends Controller
             $check_hackathon_user_exist = HackathonUsers::where('hackathon_id', $hackathon->id)->where('registration_id', $email_exist->id)->first();
 
             if ($check_hackathon_user_exist) {
-                return redirect("/hack" . "/" . $short_url. "#already");
+                return redirect("hack/".$short_url)->with('message', 'failed');
             }
 
             $hackathonuser = new HackathonUsers();
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $email_exist->id;
             $hackathonuser->save();
-            return redirect("/hack" . "/" . $short_url. "#");
+           
+            return redirect("/hack" . "/" . $short_url)->with('message', 'success');
         } else {
             $registration = new Registration();
             $registration->name = $request->name;
@@ -77,20 +90,11 @@ class RegistrationController extends Controller
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $registration->id;
             $hackathonuser->save();
-
-            return redirect("/hack" . "/" . $short_url);
+            
+            return redirect("/hack" . "/" . $short_url)->with('message', 'success');
             // return "Created New record";
         }
 
-
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'nick_name' => 'required',
-        //     'email' => 'required',
-        //     'password' => 'required',
-        //     'bio' => 'required',
-        //     'links' => 'required'
-        // ]);
 
 
     }
