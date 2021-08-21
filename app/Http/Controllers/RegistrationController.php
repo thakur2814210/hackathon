@@ -7,8 +7,6 @@ use App\Models\HackathonUsers;
 use App\Models\Profilelink;
 use App\Models\Registration;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-
 class RegistrationController extends Controller
 {
     /**
@@ -38,7 +36,7 @@ class RegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $short_url)
+    public function save(Request $request, $short_url)
     {
         
         $this->validate($request, [

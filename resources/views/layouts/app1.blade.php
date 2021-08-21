@@ -9,6 +9,7 @@
 
     <title>{{$page_title}}</title>
     <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" /> 
 
     <!--Core CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">

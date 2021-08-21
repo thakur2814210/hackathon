@@ -16,6 +16,7 @@
                 Talk with anyone
             </h2>
             <h4>Meet people from all around the world</h4>
+            {{-- <a class="button primary-btn is-loading">Primary</a> --}}
         </div>
 
         <div class="content-wrapper">
@@ -98,7 +99,7 @@
             <!-- Process step -->
             <div class="process-block has-text-centered">
                 <div class="process-icon">
-                    <img src="assets/img/graphics/icons/learn-core.svg" data-base-url="assets/img/graphics/icons/learn" data-extension=".svg" alt="">
+                    <img src="{{asset('assets/img/graphics/icons/learn-core.svg')}}" data-base-url="assets/img/graphics/icons/learn" data-extension=".svg" alt="">
                 </div>
                 <div class="text-block">
                     <h4 class="title is-5 no-margin">Teach</h4>
@@ -698,10 +699,27 @@
 <div class="container">
     <div class="title quick-feature has-numbers text-bold">
         <h2>Write Your Code Here.</h2>
+        
+        <div class="field">
+            <div class="control has-icons-left">
+                <div class="select">
+                    <select id="change_lang">
+                        <option selected>Language</option>
+                        <option value="php">PHP</option>
+                        <option value="javascript">Javascript</option>
+                    </select>
+                </div>
+                <div class="icon is-left">
+                    <i class="fa fa-code"></i>
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div class="title-divider is-small"></div>
         <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
-        <a class="button button-cta primary-btn mt-3 modal-trigger" id="submit_code" data-modal="vertical-form-modal">Submit</a>
+        <a class="button button-cta primary-btn mt-3 modal-trigger " id="submit_code" data-modal="vertical-form-modal">Submit</a>
+
 </div>
 
  {{-- <!-- Modal trigger -->
@@ -737,7 +755,10 @@
 @endsection
 
 @section('scripts')
-<script src="monaco-editor/min/vs/loader.js"></script>
+<script src="{{asset("monaco-editor/min/vs/loader.js")}}"></script>
+<script>
+    let slug = '{{$challenge->slug}}';
+</script>
 <script src="{{asset('js/challenges.js')}}"></script>
 @endsection
 

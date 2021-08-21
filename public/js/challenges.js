@@ -1,3 +1,10 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('lang');
 let defaultLang = "php";
@@ -8,7 +15,7 @@ if (myParam) {
 let editor;
 require.config({
     paths: {
-        'vs': 'monaco-editor/min/vs'
+        'vs': '../monaco-editor/min/vs'
     }
 });
 require(['vs/editor/editor.main'], function () {
@@ -33,10 +40,61 @@ $("#submit_code").click(function (e) {
 
 $("#save").click(function (e) {
     e.preventDefault();
-
+    $("#submit_code").addClass('is-loading');
     let email = $("#email_f").val();
+    var value = editor.getValue()
     if (validateEmail(email)) {
         $(".control-material").removeClass("has-error")
+        $.ajax({
+            url: slug,
+            type: "post",
+            data: {
+                email,
+                code: value,
+                lang : defaultLang,
+            },
+            success: function (response) {
+                console.log(response);
+                iziToast.show({
+                    class: "success-toast",
+                    icon: "sl sl-icon-check",
+                    title: "Done,",
+                    message: response.message,
+                    titleColor: "#fff",
+                    messageColor: "#fff",
+                    iconColor: "#fff",
+                    backgroundColor: "#00b289",
+                    progressBarColor: "#444F60",
+                    position: "topRight",
+                    transitionIn: "fadeInDown",
+                    close: !1,
+                    zindex: 99999
+                })
+                $("#submit_code").removeClass('is-loading')
+                
+            },
+            error: function (error) {
+                console.log(error.responseJSON.message)
+                iziToast.show({
+                    class: "danger-toast",
+                    icon: "sl sl-icon-close",
+                    title: "Error,",
+                    message: error.responseJSON.message,
+                    titleColor: "#fff",
+                    messageColor: "#fff",
+                    iconColor: "#fff",
+                    backgroundColor: "#FF7273",
+                    progressBarColor: "#444F60",
+                    position: "topRight",
+                    transitionIn: "fadeInDown",
+                    close: !1,
+                    zindex: 99999
+                })
+                $("#submit_code").removeClass('is-loading')
+            }
+        });
+
+
         hideModal();
     } else {
         $(".control-material").addClass("has-error")
@@ -61,3 +119,7 @@ function hideModal() {
         $("#vertical-form-modal").removeClass('is-active');
     }, 500)
 }
+
+$("#change_lang").on("change", function () {
+    window.location.href = '?lang=' + this.value;
+})

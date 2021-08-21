@@ -13,4 +13,8 @@ class Registration extends Model
         return $this->belongsToMany(Hackathon::class, 'hackathon_users');
     }
 
+    public function profile_links(){
+        return $this->hasMany(Profilelink::class);
+    }
+
 }
