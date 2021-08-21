@@ -17,4 +17,10 @@ class Registration extends Model
         return $this->hasMany(Profilelink::class);
     }
 
+    public function challengeSolution(){
+        return $this->hasMany(ChallengeSolution::class);
+    }
+
+  
+
 }

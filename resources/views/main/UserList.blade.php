@@ -35,25 +35,22 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Short URL</th>
-                        <th>Total Submission</th>
-                        <th>Date</th>
+                        <th>Email</th>
+                        <th>Solution Submit Date</th>
                         <th>Action</th>
                       
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($challenges as $challenge)
-                    <tr>
-                        <td>1</td>
-                        <td>{{$challenge->challenge_name}}</td>
-                        <td>{{$challenge->short_url}}</td>
-                        <td>{{count($challenge->solutions)}}</td>
-                        <td>{{$challenge->created_at}}</td>
-                        <td><a  href="/main/users/{{$challenge->slug}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View Parti</a></td>
-                    </tr>  
-                    @endforeach
-                    
+                   @foreach ($solutions as $sol)
+                   <tr>
+                    <td>1</td>
+                    <td>{{$sol->user->name}}</td>
+                    <td>{{$sol->user->email}}</td>
+                    <td>{{$sol->created_at}}</td>
+                    <td><a  href="/main/users/show_code/{{$sol->id}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View Parti</a></td>
+                </tr>  
+                   @endforeach
                 </tbody>
             </table>
         </div>
@@ -71,10 +68,8 @@
 @endsection
 
 @section('scripts')
-<script>
-   let code = "1}";
-</script>
-<script src="{{asset("monaco-editor/min/vs/loader.js")}}"></script>
+
+{{-- <script src="{{asset("monaco-editor/min/vs/loader.js")}}"></script> --}}
 
 {{-- <script src="{{asset('js/main.js')}}"></script> --}}
 @endsection

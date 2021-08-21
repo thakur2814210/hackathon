@@ -17,4 +17,8 @@ class Challenges extends Model
             ->generateSlugsFrom('challenge_name')
             ->saveSlugsTo('slug');
     }
+
+    public function Solutions(){
+        return  $this->hasMany(ChallengeSolution::class, 'challenge_id');
+    }
 }

@@ -1,7 +1,7 @@
 let editor;
 require.config({
     paths: {
-        'vs': '../monaco-editor/min/vs'
+        'vs': path
     }
 });
 require(['vs/editor/editor.main'], function () {

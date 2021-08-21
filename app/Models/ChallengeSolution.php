@@ -9,4 +9,9 @@ class ChallengeSolution extends Model
 {
     protected $table = 'challenges_solutions';
     use HasFactory;
+
+
+    public function user(){
+        return $this->belongsTo(Registration::class, 'registration_id');
+    }
 }

@@ -43,6 +43,8 @@ Route::post('/registrations/{short_url}', 'App\Http\Controllers\RegistrationCont
 
 Route::get('/main', 'App\Http\Controllers\MainController@index');
 Route::get('/main/{slug}', 'App\Http\Controllers\MainController@list');
+Route::get('main/users/{slug}', 'App\Http\Controllers\MainController@UserList');
+Route::get('main/users/show_code/{solution_id}', 'App\Http\Controllers\MainController@ShowCode');
 
 Route::resources([
 	'hackathons' => HackathonController::class,
