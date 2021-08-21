@@ -87,8 +87,8 @@ class HackathonController extends Controller
         $hackathon->event_end = $request->event_end;
         $hackathon->end_subscription = $request->end_subscription;
 
-        $slug = Str::slug($request->title, '-');
-        $hackathon->slug = $slug;
+        // $slug = Str::slug($request->title, '-');
+        // $hackathon->slug = $slug;
 
         $temp= Hackathon::max('id') + 1;
         $url= Hashids::encode($temp);

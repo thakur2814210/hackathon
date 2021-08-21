@@ -72,6 +72,13 @@ class Controller extends BaseController
 
     public function SaveSolution(Request $request, $slug)
     {
+
+        $request->validate([
+			'code'=> 'required',
+			'lang'=>'required',
+		]);
+
+
         $ch = Challenges::where('slug',$slug)->first();
         if(!$ch){
             return response()->json(['message' => 'Challenge Not Exist'], 404);
