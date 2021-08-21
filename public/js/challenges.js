@@ -4,13 +4,14 @@ $.ajaxSetup({
     }
 });
 
-
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('lang');
-let defaultLang = "php";
+let defaultLang = "";
+
 if (myParam) {
     defaultLang = myParam;
 }
+let defaultText = defaultLang == "" ? "Please Select Language First" : "Write your code here."
 
 let editor;
 require.config({
@@ -20,11 +21,17 @@ require.config({
 });
 require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(document.getElementById('container'), {
-        value: ['// Write Your Code Here.'].join('\n'),
+        value: [defaultText].join('\n'),
         language: defaultLang,
-        theme: "vs-dark"
+        theme: "vs-dark",
+        readOnly: defaultLang == "" ? true : false
     });
 });
+
+
+$("#container").change(function () {
+    console.log(1);
+})
 
 function save() { // how do I get the value/code inside the editor?
     var value = editor.getValue()
@@ -40,18 +47,23 @@ $("#submit_code").click(function (e) {
 
 $("#save").click(function (e) {
     e.preventDefault();
+    if (defaultLang == "") {
+        hideModal();
+        return alert("Please Select Language First.")
+    }
+
     $("#submit_code").addClass('is-loading');
     let email = $("#email_f").val();
     var value = editor.getValue()
-    if (validateEmail(email)) {
+    if (validateEmail(email)) { 
         $(".control-material").removeClass("has-error")
         $.ajax({
             url: slug,
             type: "post",
             data: {
                 email,
-                code: value,
-                lang : defaultLang,
+                code: btoa(value),
+                lang: defaultLang
             },
             success: function (response) {
                 console.log(response);
@@ -71,7 +83,7 @@ $("#save").click(function (e) {
                     zindex: 99999
                 })
                 $("#submit_code").removeClass('is-loading')
-                
+
             },
             error: function (error) {
                 console.log(error.responseJSON.message)
