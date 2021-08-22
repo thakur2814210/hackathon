@@ -704,7 +704,7 @@
             <div class="control has-icons-left">
                 <div class="select">
                     <select id="change_lang">
-                        <option selected>Select Language</option>
+                        <option selected value="default">Select Language</option>
                         <option value="php">PHP</option>
                         <option value="javascript">Javascript</option>
                     </select>

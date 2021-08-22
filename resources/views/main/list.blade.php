@@ -22,10 +22,6 @@
        
     </div>
 </div>
-
-
-
-
 <div class="">
     <div class="columns is-vcentered">
         <!-- Demo section -->
@@ -47,10 +43,10 @@
                     <tr>
                         <td>1</td>
                         <td>{{$challenge->challenge_name}}</td>
-                        <td>{{$challenge->short_url}}</td>
+                        <td><a href="/challenges/{{$challenge->short_url}}">{{$challenge->short_url}}</a></td>
                         <td>{{count($challenge->solutions)}}</td>
-                        <td>{{$challenge->created_at}}</td>
-                        <td><a  href="/main/users/{{$challenge->slug}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View Parti</a></td>
+                        <td>{{ \Carbon\Carbon::parse($challenge->created_at)->format('d-M-Y')}}</td>
+                        <td><a href="/main/users/{{$challenge->slug}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View</a></td>
                     </tr>  
                     @endforeach
                     

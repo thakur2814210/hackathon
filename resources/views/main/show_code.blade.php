@@ -48,38 +48,8 @@
     
     <div class="title-divider is-small"></div>
         <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
-        <a class="button button-cta primary-btn mt-3 modal-trigger " id="submit_code" data-modal="vertical-form-modal">Submit</a>
-
+        {{-- <a class="button button-cta primary-btn mt-3 modal-trigger " id="submit_code" data-modal="vertical-form-modal">Submit</a> --}}
 </div>
-
- {{-- <!-- Modal trigger -->
- <a class="button button-cta btn-align primary-btn raised modal-trigger" data-modal="vertical-form-modal">Open modal</a>
- <!-- /Modal trigger -->
-  --}}
- <!-- Modal Markup -->
- <div id="vertical-form-modal" class="modal modal-sm">
-     <div class="modal-background" id="email-modal-background"></div>
-     <div class="modal-content" id="email-modal-content">
-         <div class="flex-card simple-shadow">
-             <div class="card-body">
-                 <h2 class="title has-text-centered is-3 mb-40">Enter Email To Submit</h2>
-                 <div class="control-material is-accent">
-                     <input class="material-input" type="email" id="email_f" required name="email">
-                     <span class="material-highlight"></span>
-                     <span class="bar"></span>
-                     <label>Email *</label>
-                 </div>
-                 <div class="mt-20">
-                     <button class="button button-cta btn-align accent-btn raised is-fullwidth no-lh" id="save">Submit</button>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <button class="modal-close is-large is-hidden" aria-label="close"></button>
- </div>
- <!-- /Modal Markup -->
-            
-
 @include('layouts.footer');
 
 @endsection

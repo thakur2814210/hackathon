@@ -34,12 +34,15 @@ class MainController extends Controller
         // return $challenge->Solutions->first()->user;
         $solutions = $challenge->Solutions;
 
-        return view('main.UserList', compact('page_title','solutions'));
+        return view('main.UserList', compact('page_title','solutions', 'challenge'));
     }
 
     function ShowCode($solution_id){
         $page_title = 'Show Code';
         $code = ChallengeSolution::where('id', $solution_id)->first();
+        if(!$code){
+            return redirect('/main');
+        }
         return view('main.show_code', compact('code', 'page_title'));
     }
 }

@@ -13,7 +13,7 @@
         <!-- Title -->
         <div class="section-title-wrapper has-text-centered">
             <h2 class="section-title-landing">
-                Challenges List
+               {{$challenge->challenge_name}}
             </h2>
             <h4>Meet people from all around the world</h4>
             {{-- <a class="button primary-btn is-loading">Primary</a> --}}
@@ -47,8 +47,8 @@
                     <td>1</td>
                     <td>{{$sol->user->name}}</td>
                     <td>{{$sol->user->email}}</td>
-                    <td>{{$sol->created_at}}</td>
-                    <td><a  href="/main/users/show_code/{{$sol->id}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View Parti</a></td>
+                    <td>{{ \Carbon\Carbon::parse($sol->created_at)->format('d-M-Y')}}</td>
+                    <td><a  href="/main/users/show_code/{{$sol->id}}" class="button is-small btn-align accent-btn raised rounded btn-outlined">View Code</a></td>
                 </tr>  
                    @endforeach
                 </tbody>

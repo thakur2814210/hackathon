@@ -10,6 +10,7 @@ let defaultLang = "";
 
 if (myParam) {
     defaultLang = myParam;
+    $("select option[value='" + myParam + "']").attr("selected", "selected");
 }
 let defaultText = defaultLang == "" ? "Please Select Language First" : "Write your code here."
 
@@ -55,7 +56,7 @@ $("#save").click(function (e) {
     $("#submit_code").addClass('is-loading');
     let email = $("#email_f").val();
     var value = editor.getValue()
-    if (validateEmail(email)) { 
+    if (validateEmail(email)) {
         $(".control-material").removeClass("has-error")
         $.ajax({
             url: slug,
@@ -133,5 +134,8 @@ function hideModal() {
 }
 
 $("#change_lang").on("change", function () {
-    window.location.href = '?lang=' + this.value;
+    if (this.value != 'default') {
+        window.location.href = '?lang=' + this.value;
+    }
+
 })
