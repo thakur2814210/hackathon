@@ -5,7 +5,7 @@
 	@include('beautymail::templates.minty.contentStart')
 		<tr>
 			<td class="title">
-				Hello,  {{$name}}, You have successfully Registered For Hackathon {{$hackathon_title}}
+				A New User Registered For Hackathon - {{$hackathon_title}}
 			</td>
 		</tr>
 		<tr>
@@ -13,13 +13,14 @@
 		</tr>
 		<tr>
 			<td class="paragraph">
-				{{$event_begin}} - {{$event_end}}
+				Name : {{$name}}
+                Email : {{$email}}
 			</td>
 		</tr>
-		{{-- <tr>
+		<tr>
 			<td width="100%" height="25"></td>
 		</tr>
-		<tr>
+		{{-- <tr>
 			<td class="title">
 				This is a heading
 			</td>
@@ -37,7 +38,7 @@
 		</tr>
 		<tr>
 			<td>
-				@include('beautymail::templates.minty.button', ['text' => 'Sign in', 'link' => '#'])
+				@include('beautymail::templates.minty.button', ['text' => '{{$hackathon_title}}', 'link' => '#'])
 			</td>
 		</tr>
 		<tr>

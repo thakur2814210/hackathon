@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InvitationEmail;
+use App\Helper\Helper;
 
 class Controller extends BaseController
 {
@@ -76,24 +77,24 @@ class Controller extends BaseController
     {
 
         $request->validate([
-			'code'=> 'required',
-			'lang'=>'required',
-		]);
+            'code' => 'required',
+            'lang' => 'required',
+        ]);
 
 
-        $ch = Challenges::where('slug',$slug)->first();
-        if(!$ch){
+        $ch = Challenges::where('slug', $slug)->first();
+        if (!$ch) {
             return response()->json(['message' => 'Challenge Not Exist'], 404);
         }
 
-        $reg = Registration::where('email' , $request->email)->first();
-        if(!$reg){
+        $reg = Registration::where('email', $request->email)->first();
+        if (!$reg) {
             return response()->json(['message' => 'User Not Exist'], 404);
         }
 
         $check_exist = ChallengeSolution::where('challenge_id', $ch->id)->where('registration_id', $reg->id)->first();
-        if($check_exist){
-            return response()->json(['message' => 'Already Done.'], 422);  
+        if ($check_exist) {
+            return response()->json(['message' => 'Already Done.'], 422);
         }
         $sol = new ChallengeSolution();
         $sol->challenge_id = $ch->id;
@@ -101,24 +102,24 @@ class Controller extends BaseController
         $sol->code = $request->code;
         $sol->lang = $request->lang;
         $sol->save();
-        return response()->json(['message' => 'Solution Submitted'], 200);  
-
+        return response()->json(['message' => 'Solution Submitted'], 200);
     }
     public function sendEmail()
     {
-       $name = "Himanshu";
+        // return Helper::SendEmailToUser('rahi', 'himanshurahidev@gmail.com', 'sdf', 'hack');
+        // $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
 
-       $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
-	$beautymail->send('emails.welcome', [], function($message)
-	{
-		$message
-			->from('test@laravelhire.com')
-			->to('ranjanthakur1996@gmail.com')
-			->subject('Welcome!');
-	});
+        // $name = "Himanshu";
 
-        //  Mail::to('ranjanthakur1996@gmail.com')->send(new InvitationEmail($name));
-      echo("mail sent successfully");
- 
+
+        // $beautymail->send('emails.welcome', ['name' => $name], function ($message) {
+        //     $message
+        //         ->from('test@laravelhire.com')
+        //         ->to('himanshurahidev@gmail.com')
+        //         ->subject('Welcome!');
+        // });
+
+        // //  Mail::to('ranjanthakur1996@gmail.com')->send(new InvitationEmail($name));
+        // echo ("mail sent successfully");
     }
 }

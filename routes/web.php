@@ -20,17 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
- Route::get('/challenge-create', 'App\Http\Controllers\Controller@challangecreate');
- Route::post('/challenge-create', 'App\Http\Controllers\Controller@store');
+Route::get('/challenge-create', 'App\Http\Controllers\Controller@challangecreate');
+Route::post('/challenge-create', 'App\Http\Controllers\Controller@store');
 //  challengedisplay
- Route::get('/challenges/{short_url}', 'App\Http\Controllers\Controller@ChallengeRedirect');
- Route::get('/challenge/{slug}', 'App\Http\Controllers\Controller@challengedisplay');
- Route::post('/challenge/{slug}', 'App\Http\Controllers\Controller@SaveSolution');
- Route::get('/test', 'App\Http\Controllers\Controller@test');
+Route::get('/challenges/{short_url}', 'App\Http\Controllers\Controller@ChallengeRedirect');
+Route::get('/challenge/{slug}', 'App\Http\Controllers\Controller@challengedisplay');
+Route::post('/challenge/{slug}', 'App\Http\Controllers\Controller@SaveSolution');
+Route::get('/test', 'App\Http\Controllers\Controller@test');
 Route::get('/invitation-email', 'App\Http\Controllers\Controller@sendEmail');
- Route::get('/challange-create', 'App\Http\Controllers\Controller@challangecreate');
+Route::get('/challange-create', 'App\Http\Controllers\Controller@challangecreate');
 
- Route::get('/challanges', 'App\Http\Controllers\Controller@challangedisplay');
+Route::get('/challanges', 'App\Http\Controllers\Controller@challangedisplay');
 // Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
 
 // Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
@@ -51,6 +51,6 @@ Route::get('main/users/{slug}', 'App\Http\Controllers\MainController@UserList');
 Route::get('main/users/show_code/{solution_id}', 'App\Http\Controllers\MainController@ShowCode');
 
 Route::resources([
-	'hackathons' => HackathonController::class,
+    'hackathons' => HackathonController::class,
     'registrations' => RegistrationController::class,
 ]);

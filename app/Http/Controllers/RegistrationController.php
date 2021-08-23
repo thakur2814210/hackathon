@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use App\Models\Hackathon;
 use App\Models\HackathonUsers;
 use App\Models\Profilelink;
@@ -19,6 +20,25 @@ class RegistrationController extends Controller
         $reg = Registration::all()->first();
         return $reg;
     }
+
+
+    // public function sendEmail($name, $email, $message)
+    // {
+    //     $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+
+    //     $name = "Himanshu";
+
+
+    //     $beautymail->send('emails.welcome', ['name' => $name, 'email', $email], function ($message) {
+    //         $message
+    //             ->from('test@laravelhire.com')
+    //             ->to('himanshurahidev@gmail.com')
+    //             ->subject('Welcome!');
+    //     });
+
+    //     //  Mail::to('ranjanthakur1996@gmail.com')->send(new InvitationEmail($name));
+    //     echo ("mail sent successfully");
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -68,7 +88,7 @@ class RegistrationController extends Controller
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $email_exist->id;
             $hackathonuser->save();
-           
+            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end );
             return redirect("/hack" . "/" . $short_url)->with('message', 'success');
         } else {
             $registration = new Registration();
@@ -92,7 +112,7 @@ class RegistrationController extends Controller
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $registration->id;
             $hackathonuser->save();
-            
+            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end );
             return redirect("/hack" . "/" . $short_url)->with('message', 'success');
             // return "Created New record";
         }
