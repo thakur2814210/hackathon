@@ -25,8 +25,11 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($short_url)
+    public function create($short_url = null)
     {
+        if(!$short_url){
+            return redirect('/');
+        }
         return view("register", compact('short_url'));
     }
 
