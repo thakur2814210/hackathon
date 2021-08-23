@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.5",
         "mckenziearts/laravel-notify": "^2.2",
         "spatie/laravel-sluggable": "^2.6",
+        "snowfire/beautymail": "^1.1",
         "vinkla/hashids": "^9.1"
     },
     "require-dev": {

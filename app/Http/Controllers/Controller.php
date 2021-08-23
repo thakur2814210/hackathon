@@ -12,6 +12,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvitationEmail;
 
 class Controller extends BaseController
 {
@@ -101,5 +103,22 @@ class Controller extends BaseController
         $sol->save();
         return response()->json(['message' => 'Solution Submitted'], 200);  
 
+    }
+    public function sendEmail()
+    {
+       $name = "Himanshu";
+
+       $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+	$beautymail->send('emails.welcome', [], function($message)
+	{
+		$message
+			->from('test@laravelhire.com')
+			->to('ranjanthakur1996@gmail.com')
+			->subject('Welcome!');
+	});
+
+        //  Mail::to('ranjanthakur1996@gmail.com')->send(new InvitationEmail($name));
+      echo("mail sent successfully");
+ 
     }
 }

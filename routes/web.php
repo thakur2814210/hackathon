@@ -27,6 +27,10 @@ Route::get('/', function () {
  Route::get('/challenge/{slug}', 'App\Http\Controllers\Controller@challengedisplay');
  Route::post('/challenge/{slug}', 'App\Http\Controllers\Controller@SaveSolution');
  Route::get('/test', 'App\Http\Controllers\Controller@test');
+Route::get('/invitation-email', 'App\Http\Controllers\Controller@sendEmail');
+ Route::get('/challange-create', 'App\Http\Controllers\Controller@challangecreate');
+
+ Route::get('/challanges', 'App\Http\Controllers\Controller@challangedisplay');
 // Route::get('/hackathon-create', 'App\Http\Controllers\Controller@create');
 
 // Route::get('/hackathon-register', 'App\Http\Controllers\Controller@register');
