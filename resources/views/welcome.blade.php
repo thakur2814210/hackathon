@@ -39,7 +39,7 @@ body{
                 <div class="columns is-vcentered">
                     <div class="column is-12 has-text-centered">
                         <h1 style="font-size:100px">
-                            Hack with iSwitch
+                            Hack with iSwitch 
                         </h1>
                         <h2 style="font-size:60px" class="subtitle is-2">
                             Join Our Team

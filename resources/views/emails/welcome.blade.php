@@ -5,7 +5,7 @@
 	@include('beautymail::templates.minty.contentStart')
 		<tr>
 			<td class="title">
-				Hello,  {{$name}}, You have successfully Registered For Hackathon {{$hackathon_title}}
+				Hello,  {{$name}}, You have successfully Registered For Hackathon  <a href="{{request()->getSchemeAndHttpHost()}}/hack/{{$short_url}}">{{$hackathon_title}}</a>
 			</td>
 		</tr>
 		<tr>

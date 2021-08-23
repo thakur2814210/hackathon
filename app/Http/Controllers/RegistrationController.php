@@ -88,7 +88,8 @@ class RegistrationController extends Controller
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $email_exist->id;
             $hackathonuser->save();
-            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end );
+            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end,  $hackathon->short_url );
+            Helper::SendEmailToAdmin($request->name, $request->email, $hackathon->title, 'New Hackathon User Registered', $hackathon->short_url);
             return redirect("/hack" . "/" . $short_url)->with('message', 'success');
         } else {
             $registration = new Registration();
@@ -112,7 +113,8 @@ class RegistrationController extends Controller
             $hackathonuser->hackathon_id = $hackathon->id;
             $hackathonuser->registration_id = $registration->id;
             $hackathonuser->save();
-            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end );
+            Helper::SendEmailToUser($request->name, 'himanshurahidev@gmail.com', $hackathon->title, 'Registered successfully' , $hackathon->event_begin, $hackathon->event_end,  $hackathon->short_url );
+            Helper::SendEmailToAdmin($request->name, $request->email, $hackathon->title, 'New Hackathon User Registered', $hackathon->short_url);
             return redirect("/hack" . "/" . $short_url)->with('message', 'success');
             // return "Created New record";
         }

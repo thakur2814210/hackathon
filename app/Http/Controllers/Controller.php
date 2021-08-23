@@ -49,7 +49,9 @@ class Controller extends BaseController
 
     public function test()
     {
-        return view('test');
+        $hackathon_title = 'himanshurahi';
+
+        return view('test', compact('hackathon_title'));
     }
 
     public function store(Request $request)
@@ -102,6 +104,7 @@ class Controller extends BaseController
         $sol->code = $request->code;
         $sol->lang = $request->lang;
         $sol->save();
+        Helper::SendEmailToAdminForChallengeSubmission($reg->name, $request->email, $ch->challenge_name, 'A New Code Submission', $ch->short_url, $sol->id);
         return response()->json(['message' => 'Solution Submitted'], 200);
     }
     public function sendEmail()
