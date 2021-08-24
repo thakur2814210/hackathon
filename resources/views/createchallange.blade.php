@@ -37,7 +37,7 @@
 
     
 @section('scripts')
-<script src="https://cdn.tiny.cloud/1/p5obn81ihtjb2y8sc0groe11339vat5zklxwlf6z5sgwa6hl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>    <script>        tinymce.init({
+<script src="https://cdn.tiny.cloud/1/{{env('TINYMCE_API')}}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>    <script>        tinymce.init({
     selector: '#myEditor',
     plugins: 'code',
 });
